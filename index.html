@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Virtual Exhibition Guide with Voice-Assisted Navigation">
+    <meta name="theme-color" content="#4A90E2">
+    <title>Exhibition Guide | School Exhibition 2025</title>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js for 3D Model -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h2>Exhibition Guide</h2>
+            </div>
+            <button id="toggle-sidebar" class="toggle-btn" aria-label="Toggle Sidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="#home" class="nav-link" data-section="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link" data-section="projects">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#fun-games" class="nav-link" data-section="fun-games">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Fun Games</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-section="about">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="check-in-btn" class="check-in-btn">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Check In</span>
+            </button>
+            <div id="location-status" class="location-status hidden">
+                <i class="fas fa-check-circle"></i>
+                <span>Location Active</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="main-content">
+        
+        <!-- Top Header Bar -->
+        <header class="top-header">
+            <div class="header-left">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fas fa-bars" style="color: #000000;"></i>
+                </button>
+                <h1 id="page-title">Shiksha Bharati Global School</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-location" id="user-location">
+                    <i class="fas fa-location-arrow"></i>
+                    <span>Location: Not Set</span>
+                </div>
+                <button id="voice-toggle-btn" class="voice-toggle-btn" aria-label="Voice Assistant">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Home Section -->
+        <section id="home" class="content-section active">
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h2>Welcome to Stem Exhibition</h2>
+                    <p>Explore amazing projects, navigate with voice commands, and enjoy interactive experiences!</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="navigateToSection('projects')">
+                            <i class="fas fa-rocket"></i> Explore Projects
+                        </button>
+                        <button class="btn btn-secondary" onclick="navigateToSection('3d-map')">
+                            <i class="fas fa-map"></i> View 3D Map
+                        </button>
+                    </div>
+                    <div class="hero-checkin">
+                        <button id="check-in-btn-home" class="btn btn-primary">
+                            <i class="fas fa-map-marker-alt"></i> Check In 
+                        </button>
+                        <div id="location-status" class="location-status hidden">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Location Active</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="hero-image">
+                    <div class="floating-icon">🎓</div>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Real-Time Navigation</h3>
+                    <p>Get directions to any stall with our interactive 3D map and geolocation tracking</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-microphone-alt"></i>
+                    <h3>Voice Commands</h3>
+                    <p>Simply speak to navigate and get information about projects hands-free</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-vr-cardboard"></i>
+                    <h3>3D Visualization</h3>
+                    <p>Explore a detailed 3D model of our exhibition hall and venue layout</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Interactive Games</h3>
+                    <p>Enjoy fun educational games and quizzes related to exhibition themes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section">
+            <div class="section-header">
+                <h2>Exhibition Projects</h2>
+                <p style="color: #ffffff;">Explore the creativity and innovation of our participants!</p>
+            </div>
+
+            <div class="projects-container">
+                <div class="project-card">
+
+                    <h3 class="project-title">Central_Vista AI Security System</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Diksha Praj. (XI-B), Sneha Mishra (XI-B), Sakshi Sharma (XI-B), Sneha Singh (XI-B), Samarth Singh (XI-A), Shristi Singh (XI-A)</p>
+
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Tri-Netra</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Harsh (XI-A), Ashutosh (XI-A), Aarav Sharma (XI-A), Devang (XI-A), Abhinav Pundir (XI-A), Dhariya Nahar (XI-B)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">S400</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Parth (XII-A), Arush (XII-A), Vishal (XII-A), Kritika (XI-B), Pranav (XI-B), Suryansh (XI-B), Paridhi (XI-A), Yashika (XI-A), Jatin (XI-A), Sarthak(XI-A)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Appilications Of Trigonometry</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Pratishtha (X-A), Kumari Garg (X-A), Jahnvi (X-A), Sonpari Gupta (X-A), Anushka Anu (X-A), Dristhi Pandey (X-A), Ayushi Yadav (X-A)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Metal Detector</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Harsh (IX-C), Naman Pandey (IX-C), Gunjan (IX-C), Tanmay Gusain (IX-C)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Coordinate Geometry</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Priyanshi (IX-C)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Triangulation</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Aditya Chaudhary (IX-C), Divyashi Sinha (IX-C), Anurag (IX-C), Janhvi Dixit (IX-C)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Nerve Cell</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Sanjana (IX-A)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Rocket</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Pranjal (IX-A)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Earthquake Detector</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Aryan (X-B), Abhinav (X-B), MD Shaad (X-B), Rudhr Pratap (X-B)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Faraday's Cage</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Ayush Prajapati (IX-E), Vaibhav Paliwal (IX-E)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Cyber Security</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Diya Mittal (VI-C)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Home-Security Device</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Abhinav (IX-B), Abhijay (IX-B)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Parkour</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Aditya Tiwari (X-C), Nikhil (X-C)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Exhibition Website</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Piyush Khola (IX-D), Aditya (IX-D)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Model on Chandryan-3 launching</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Adarsh (VII-E), Yashi (VII-E)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Cyber Security</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Yana (VII-E), Kanvi (VII-E)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">LDR Home Automation</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Hanisha, Divyansh</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">FM Radio</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Tanvi</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Patience Tester</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Raunak (VII-B)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Remote Controlled Car</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Harshal (VI-B)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Aeroplane</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Divyanshi</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Giant Wheel</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Bhavika</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Humanoid Robot</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Raksha (IX-D), Shivam (IX-D)</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Base-centric life dynamics model</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Tanvi, Bhaavya</p>
+                    
+                </div>
+
+                <div class="project-card">
+
+                    <h3 class="project-title">Smart Dustbin</h3>
+                    <p class="participant-name"><strong>Participants:</strong>Maanvi, Ragni</p>
+                    
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- Fun Games Section -->
+        <section id="fun-games" class="content-section">
+            <div class="section-header">
+                <h2>Interactive Games & Activities</h2>
+                <p style="color: rgba(255,255,255,0.9); margin-top: 10px;">Take a break and enjoy some educational fun!</p>
+            </div>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3>Exhibition Quiz</h3>
+                    <p>Test your knowledge about the projects and innovations</p>
+                    <button class="btn btn-primary" onclick="startGame('quiz')">Start Quiz</button>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Memory Match</h3>
+                    <p>Match project images and descriptions</p>
+                    <button class="btn btn-primary" onclick="startGame('memory')">Play Now</button>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-icon">
+                        <i class="fas fa-crosshairs"></i>
+                    </div>
+                    <h3>Scavenger Hunt</h3>
+                    <p>Find hidden items throughout the exhibition</p>
+                    <button class="btn btn-primary" onclick="startGame('scavenger')">Start Hunt</button>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Leaderboard</h3>
+                    <p>See top scores and achievements</p>
+                    <button class="btn btn-secondary" onclick="showLeaderboard()">View Rankings</button>
+                </div>
+            </div>
+
+            <!-- Game Container -->
+            <div id="game-container" class="game-container hidden">
+                <div class="game-header">
+                    <h3 id="game-title">Game Title</h3>
+                    <button class="close-game-btn" onclick="closeGame()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="game-content" class="game-content">
+                    <!-- Game content will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="content-section">
+            <div class="about-content">
+                <h2>About This Exhibition</h2>
+                <p>Welcome to our innovative virtual exhibition guide! This platform combines cutting-edge technology with intuitive design to enhance your exhibition experience.</p>
+                
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>Our Mission</h3>
+                        <p>To provide visitors with an immersive, interactive, and accessible way to explore and learn from student innovations and projects.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Technology Stack</h3>
+                        <ul class="tech-list">
+                            <li><i class="fas fa-code"></i> HTML5 & CSS3 for Interactive UI</li>
+                            <li><i class="fas fa-cube"></i> Three.js for 3D Visualization</li>
+                            <li><i class="fas fa-microphone"></i> Web Speech API for Voice Control</li>
+                            <li><i class="fas fa-map-marked-alt"></i> Geolocation API for Navigation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Need Help?</h3>
+                    <p>Visit our help desk at the main entrance or use the voice assistant for assistance.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Voice Assistant Interface -->
+    <div id="voice-assistant" class="voice-assistant">
+        <div class="voice-assistant-content">
+            <div class="voice-status">
+                <div class="voice-animation">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
+                <p id="voice-status-text">Listening...</p>
+            </div>
+
+            <div class="voice-transcript">
+                <div id="transcript-container">
+                    <p class="transcript-label">You said:</p>
+                    <p id="user-transcript" class="transcript-text">Click the microphone to start...</p>
+                </div>
+                <div id="response-container">
+                    <p class="response-label">Assistant:</p>
+                    <p id="assistant-response" class="response-text">Ready to help you navigate!</p>
+                </div>
+            </div>
+
+            <div class="voice-controls">
+                <button id="voice-mic-btn" class="voice-control-btn mic-btn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button id="voice-stop-btn" class="voice-control-btn stop-btn">
+                    <i class="fas fa-stop"></i>
+                </button>
+                <button id="voice-close-btn" class="voice-control-btn close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="voice-suggestions">
+                <p>Try saying:</p>
+                <div class="suggestion-chips">
+                    <button class="chip" onclick="processSuggestion('Show me the robotics project')">Show me the robotics project</button>
+                    <button class="chip" onclick="processSuggestion('Navigate to Stall A-12')">Navigate to Stall A-12</button>
+                    <button class="chip" onclick="processSuggestion('What projects are nearby')">What's nearby?</button>
+                    <button class="chip" onclick="processSuggestion('Start a quiz')">Start a quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-project-title">Project Title</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-project-content">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <i class="fas fa-info-circle"></i>
+        <span id="toast-message">Notification message</span>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay-full hidden">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
